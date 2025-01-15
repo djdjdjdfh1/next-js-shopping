@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import NavigationBar from './components/NavigationBar';
-import Link from 'next/link';
+import './globals.css'
 
 export const metadata: Metadata = {
   title: "Next js",
@@ -15,13 +14,6 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <ol>
-          <li><Link href='/'>Home</Link></li>
-          <li><Link href='/list'>목록 페이지</Link></li>
-          <li><Link href='/detail/1'>상세 페이지 1</Link></li>
-          <li><Link href='/detail/2'>상세 페이지 2</Link></li>
-        </ol>
-        <NavigationBar />
         {children}
       </body>
     </html>
