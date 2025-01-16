@@ -1,4 +1,4 @@
-export type ShoppingView ={
+export type SearchView ={
     lastBuildDate: string;
     total: number;
     start: number;
