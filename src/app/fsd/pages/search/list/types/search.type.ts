@@ -1,3 +1,12 @@
+import { SortOption } from '../../option-bar/utils/constants';
+
+export type SearchListParams =  {
+    query: string;
+    display?: number;
+    sort?: SortOption['value'];
+    catId?: string;
+}
+
 export type SearchView ={
     lastBuildDate: string;
     total: number;

@@ -1,11 +1,20 @@
+import { SearchListParams } from '../list/types/search.type'
 import CategoryRow from './ui/category-row'
 
-export default function CategorySection() {
+type Props = {
+    params: SearchListParams;
+}
+
+export default function CategorySection(props: Props) {
+    const onBtnClick = () => {
+        
+    }
+
     return (
-        <div>
+        <>
             <CategoryRow title='카테고리' listData={CATEGORY}  />
             <CategoryRow title='브랜드' listData={BRAND}  />
-        </div>
+        </>
     ) 
 }
 

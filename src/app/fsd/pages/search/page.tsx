@@ -1,15 +1,24 @@
-import { SearchBar } from '../../shared';
 import CategorySection from './category';
-import GetSearchList from './list/api';
+import GetSearchList from './list/api/getSearchList';
+import { SearchListParams } from './list/types/search.type';
 import SearchList from './list/ui/search-list'
+import OptionBar from './option-bar/ui/option-bar';
+import SearchSection from './search-section/search-section';
 
-export default async function SearchPage() {
-    const listData = await GetSearchList({query: '아디다스신발', display: 40});
+type Props ={
+    searchParams: SearchListParams
+}
+
+export default async function SearchPage({searchParams}: Props) {
+    const listData = await GetSearchList({query: searchParams.query, display: 20, sort: searchParams.sort});
 
     return (
         <div>
-            <SearchBar />
-            <CategorySection />
+            <SearchSection />
+            <br />
+            <CategorySection params={searchParams} />
+            <br />
+            <OptionBar params={searchParams} />
             <SearchList listData={listData} />
         </div>
     )

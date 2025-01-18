@@ -1,12 +1,7 @@
 import axios from 'axios';
-import { SearchView } from '../types/search.type';
+import { SearchListParams, SearchView } from '../types/search.type';
 
-type Props = {
-    query: string;
-    display: number;
-}
-
-export default async function GetSearchList({query, display}: Props) {
+export default async function GetSearchList({query, display=20, sort}: SearchListParams) {
     const URL = process.env.API_URL;
     const CLIENT_ID = process.env.ClientID;
     const CLIENT_SECRET = process.env.ClientSecret;
@@ -14,6 +9,7 @@ export default async function GetSearchList({query, display}: Props) {
     const params = {
         query,
         display,
+        sort
     };
     
     try {
