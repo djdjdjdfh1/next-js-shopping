@@ -5,16 +5,16 @@ import SearchList from './list/ui/search-list'
 import OptionBar from './option-bar/ui/option-bar';
 import SearchSection from './search-section/search-section';
 
-type Props ={
+type Props = {
     searchParams: SearchListParams
 }
 
 export default async function SearchPage({searchParams}: Props) {
-    const listData = await GetSearchList({query: searchParams.query, display: 20, sort: searchParams.sort});
+    const listData = await GetSearchList({query: searchParams.query, display: searchParams.display, sort: searchParams.sort});
 
     return (
         <div>
-            <SearchSection />
+            <SearchSection query={searchParams.query} />
             <br />
             <CategorySection params={searchParams} />
             <br />

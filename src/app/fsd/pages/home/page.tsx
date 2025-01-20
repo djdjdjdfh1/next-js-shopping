@@ -10,9 +10,9 @@ export default function HomePage() {
     return (
         <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault();
-            router.push(`/search?query=${e.target.elements.search.value}`);
+            router.push(`/search?query=${e.target.elements.search.value}&display=20&sort=sim`);
         }}>
-            <SearchBar />
+            <SearchBar query={''} />
         </form>
         
     )

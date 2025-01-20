@@ -5,15 +5,12 @@ type Props = {
     params: SearchListParams;
 }
 
-export default function CategorySection(props: Props) {
-    const onBtnClick = () => {
-        
-    }
+export default function CategorySection({params}: Props) {
 
     return (
         <>
-            <CategoryRow title='카테고리' listData={CATEGORY}  />
-            <CategoryRow title='브랜드' listData={BRAND}  />
+            <CategoryRow queryName='catId' title='카테고리' listData={CATEGORY}  />
+            <CategoryRow queryName='brand' title='브랜드' listData={BRAND}  />
         </>
     ) 
 }

@@ -3,8 +3,14 @@
 import React from 'react';
 import { SearchBar } from '@/app/fsd/shared';
 import { useSearchParams, useRouter} from 'next/navigation';
+import { SearchListParams } from '../list/types/search.type';
+import { SearchParams } from 'next/dist/server/request/search-params';
 
-export default function SearchSection() {
+type Props = {
+    query: SearchListParams['query'];
+}
+
+export default function SearchSection({query}: Props) {
     const router = useRouter();
     const searchParams = useSearchParams();
     
@@ -21,7 +27,7 @@ export default function SearchSection() {
             e.preventDefault();
             handleParameter(e);
         }}>
-            <SearchBar />
+            <SearchBar query={query} />
         </form>
     )
 }
