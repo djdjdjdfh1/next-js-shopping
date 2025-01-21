@@ -17,7 +17,7 @@ export default function SearchList({params, listData}: Props) {
 
     return (
         <div>
-            <OptionBar params={params} listType={listType} setListType={setListType} />
+            <OptionBar listType={listType} setListType={setListType} />
             <div className="border-t-2 border-black">
                 {listType === 'table' && listData.items.map((data, i) => (
                         <div key={i} className='flex items-center py-3 cursor-pointer hover:bg-blue-100'

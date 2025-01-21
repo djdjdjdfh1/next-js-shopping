@@ -1,16 +1,18 @@
-import { SearchListParams } from '../list/types/search.type'
+'use client'
+
+import { useSearchParams } from 'next/navigation';
 import CategoryRow from './ui/category-row'
 
-type Props = {
-    params: SearchListParams;
-}
-
-export default function CategorySection({params}: Props) {
+export default function CategorySection() {
+    const searchParams = useSearchParams();
+    
+    const catId = searchParams.get('catId') || ''
+    const brand = searchParams.get('brand') || ''
 
     return (
         <>
-            <CategoryRow queryName='catId' title='카테고리' listData={CATEGORY}  />
-            <CategoryRow queryName='brand' title='브랜드' listData={BRAND}  />
+            <CategoryRow queryName='catId' title='카테고리' listData={CATEGORY} defaultValue={catId}  />
+            <CategoryRow queryName='brand' title='브랜드' listData={BRAND} defaultValue={brand}  />
         </>
     ) 
 }

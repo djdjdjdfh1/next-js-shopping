@@ -16,7 +16,7 @@ export default function Pagination({listData}: Props) {
     const itemsPerPage = 10; // 한 페이지에 보여줄 아이템 수
     const totalPages = Math.ceil(total / itemsPerPage);
 
-    const [currentPage, setCurrentPage] = useState(Math.ceil(start / itemsPerPage));
+    const [currentPage, setCurrentPage] = useState(start);
     const [pageGroup, setPageGroup] = useState(0); // 현재 보여줄 페이지 번호 그룹 (0부터 시작)
 
     const maxPageButtons = 10; // 한 번에 보여줄 페이지 번호 개수

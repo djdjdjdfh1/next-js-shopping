@@ -6,8 +6,6 @@ export default async function GetSearchList({query, display, sort, start}: Searc
     const CLIENT_ID = process.env.ClientID;
     const CLIENT_SECRET = process.env.ClientSecret;
 
-    console.log(query, sort, display, start)
-
     const params = {
         query,
         display,
@@ -24,7 +22,6 @@ export default async function GetSearchList({query, display, sort, start}: Searc
             },
         });
         const data:SearchView = res.data;
-        console.log('새응답',data.items)
         return data;
     } catch (error) {
         console.error("Error fetching data:", error);

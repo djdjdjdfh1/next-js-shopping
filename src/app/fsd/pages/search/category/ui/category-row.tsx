@@ -7,13 +7,14 @@ type Props = {
     queryName: 'catId' | 'brand'
     title: string;
     listData: string[];
+    defaultValue: string;
 }
 
-export default function CategoryRow({queryName, title, listData}: Props) {
+export default function CategoryRow({queryName, title, listData, defaultValue}: Props) {
     const router = useRouter();
     const searchParams = useSearchParams();
 
-    const [selectedValue, setSelectedValue] = useState<string>('')
+    const [selectedValue, setSelectedValue] = useState<string>(defaultValue)
 
     const handleParameter = (value: string) => {
         const params = new URLSearchParams(searchParams.toString());

@@ -1,20 +1,22 @@
 'use client'
 
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { PAGING_TYPE, PagingOption, SORT_OPTION, SortOption } from '../utils/constants';
-import { ListType, SearchListParams } from '../../list/types/search.type';
+import { ListType } from '../../list/types/search.type';
 
 type Props = {
-    params: SearchListParams;
     listType: ListType;
     setListType: Dispatch<SetStateAction<ListType>>
 }
 
-export default function OptionBar({params, listType, setListType}: Props) {
+export default function OptionBar({listType, setListType}: Props) {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const [selectedValue, setSelectedValue] = useState<SortOption['value']>('sim')
+    const sort = searchParams.get('sort') || 'sim'
+    const display = searchParams.get('display') || 20
+
+    const [selectedValue, setSelectedValue] = useState<SortOption['value']>(sort)
 
     const onLabelClick = (value: SortOption['value']) => {
         setSelectedValue(value);
@@ -29,19 +31,13 @@ export default function OptionBar({params, listType, setListType}: Props) {
         router.push(newUrl);
     } 
     
-    const handlePagingParameter = (value: PagingOption['value']) => {
+    const handleDisplayParameter = (value: PagingOption['value']) => {
         const params = new URLSearchParams(searchParams.toString());
         params.set('display', value);
 
         const newUrl = `${window.location.pathname}?${params.toString()}`;
         router.push(newUrl);
     } 
-    
-    useEffect(()=>{
-        if (params?.sort) {
-            setSelectedValue(params.sort);
-        }
-    }, [params])
 
     return (
         <div className='flex justify-between items-center gap-2'>
@@ -57,8 +53,9 @@ export default function OptionBar({params, listType, setListType}: Props) {
             <div className='flex items-center gap-2'>
                 <select 
                     className='border-2' 
-                    name="paging" 
-                    onChange={(e) => handlePagingParameter(e.target.value as PagingOption['value'])}
+                    name="display" 
+                    onChange={(e) => handleDisplayParameter(e.target.value as PagingOption['value'])}
+                    defaultValue={display}
                 >
                     {PAGING_TYPE.map((option, i) => (
                         <option key={i} value={option.value}>{option.label}</option>

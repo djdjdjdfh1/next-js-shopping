@@ -3,7 +3,7 @@ import { SortOption } from '../utils/constants';
 export type SearchListParams =  {
     query: string;
     display: number;
-    sort?: SortOption['value'];
+    sort: SortOption['value'];
     // catId?: string;
     start: number;
 }
