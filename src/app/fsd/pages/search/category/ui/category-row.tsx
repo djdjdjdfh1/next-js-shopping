@@ -17,12 +17,11 @@ export default function CategoryRow({queryName, title, listData}: Props) {
 
     const handleParameter = (value: string) => {
         const params = new URLSearchParams(searchParams.toString());
-          // 같은 값이면 초기화 (삭제)
-        if (params.get(queryName) === value) {
-            params.delete(queryName);
-        } else {
-            // 새로운 값을 추가/변경
+    
+        if (value) {
             params.set(queryName, value);
+        } else {
+            params.delete(queryName);
         }
 
         const newQueryString = params.toString();

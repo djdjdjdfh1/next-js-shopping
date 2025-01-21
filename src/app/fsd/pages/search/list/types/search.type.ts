@@ -1,10 +1,11 @@
-import { SortOption } from '../../option-bar/utils/constants';
+import { SortOption } from '../utils/constants';
 
 export type SearchListParams =  {
     query: string;
     display: number;
     sort?: SortOption['value'];
-    catId?: string;
+    // catId?: string;
+    start: number;
 }
 
 export type SearchView ={
@@ -31,3 +32,5 @@ export type Item = {
     category3: string;
     category4: string;
 }
+
+export type ListType = 'table' | 'card'

@@ -1,15 +1,17 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { PAGING_TYPE, PagingOption, SORT_OPTION, SortOption } from '../utils/constants';
-import { SearchListParams } from '../../list/types/search.type';
+import { ListType, SearchListParams } from '../../list/types/search.type';
 
 type Props = {
     params: SearchListParams;
+    listType: ListType;
+    setListType: Dispatch<SetStateAction<ListType>>
 }
 
-export default function OptionBar({params}: Props) {
+export default function OptionBar({params, listType, setListType}: Props) {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [selectedValue, setSelectedValue] = useState<SortOption['value']>('sim')
@@ -35,7 +37,6 @@ export default function OptionBar({params}: Props) {
         router.push(newUrl);
     } 
     
-    
     useEffect(()=>{
         if (params?.sort) {
             setSelectedValue(params.sort);
@@ -53,14 +54,30 @@ export default function OptionBar({params}: Props) {
                     </div>
                 ))}
             </div>
-            <div>
-            <select name="paging" className='border-2' 
-            onChange={(e) => handlePagingParameter(e.target.value as PagingOption['value'])}
-            >
-                {PAGING_TYPE.map((option, i) => (
-                    <option key={i} value={option.value}>{option.label}</option>
-                ))}
-            </select>
+            <div className='flex items-center gap-2'>
+                <select 
+                    className='border-2' 
+                    name="paging" 
+                    onChange={(e) => handlePagingParameter(e.target.value as PagingOption['value'])}
+                >
+                    {PAGING_TYPE.map((option, i) => (
+                        <option key={i} value={option.value}>{option.label}</option>
+                    ))}
+                </select>
+                <div className='flex items-center border'>
+                    <button 
+                        className={listType === 'table' ? 'text-blue-600 border' : 'border'}
+                        onClick={() => setListType('table')}
+                    >
+                        테이블
+                    </button>
+                    <button 
+                        className={listType === 'card' ? 'text-blue-600 border' :'border'}
+                        onClick={() => setListType('card')}
+                    >
+                        카드
+                    </button>
+                </div>
             </div>
         </div>
     )

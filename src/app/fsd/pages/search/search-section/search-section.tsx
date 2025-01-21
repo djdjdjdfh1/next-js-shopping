@@ -4,7 +4,6 @@ import React from 'react';
 import { SearchBar } from '@/app/fsd/shared';
 import { useSearchParams, useRouter} from 'next/navigation';
 import { SearchListParams } from '../list/types/search.type';
-import { SearchParams } from 'next/dist/server/request/search-params';
 
 type Props = {
     query: SearchListParams['query'];

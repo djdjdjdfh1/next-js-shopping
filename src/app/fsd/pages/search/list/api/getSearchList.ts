@@ -1,15 +1,18 @@
 import axios from 'axios';
 import { SearchListParams, SearchView } from '../types/search.type';
 
-export default async function GetSearchList({query, display, sort}: SearchListParams) {
+export default async function GetSearchList({query, display, sort, start}: SearchListParams) {
     const URL = process.env.API_URL;
     const CLIENT_ID = process.env.ClientID;
     const CLIENT_SECRET = process.env.ClientSecret;
 
+    console.log(query, sort, display, start)
+
     const params = {
         query,
         display,
-        sort
+        sort,
+        start
     };
     
     try {
@@ -21,6 +24,7 @@ export default async function GetSearchList({query, display, sort}: SearchListPa
             },
         });
         const data:SearchView = res.data;
+        console.log('새응답',data.items)
         return data;
     } catch (error) {
         console.error("Error fetching data:", error);
